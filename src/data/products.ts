@@ -137,6 +137,54 @@ export const comingSoonProducts: Product[] = [
   },
 ];
 
+/* ── Bihar Kitchen Collection (for Homepage "From Bihar's Kitchen" section) ── */
+
+export interface BiharKitchenProduct {
+  name: string;
+  status: 'Available' | 'Coming Soon';
+  image: string;
+  description: string;
+  shortDescription: string;
+  price: number | null;
+  packSize: string;
+  highlights: string[];
+  comingSoon: boolean;
+  slug: string;
+}
+
+export const biharKitchenProducts: BiharKitchenProduct[] = [
+  {
+    name: 'Traditional Sattu',
+    status: 'Available',
+    image: 'https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=80',
+    description: 'A time-honoured Bihar staple made from roasted gram, crafted for daily nourishment.',
+    shortDescription: 'A time-honoured Bihar staple made from roasted gram.',
+    price: 349,
+    packSize: '500 g',
+    highlights: [
+      '100% Natural',
+      'High Protein',
+      'Rich in Fibre',
+      'No Preservatives',
+      'Traditional Recipe',
+    ],
+    comingSoon: false,
+    slug: 'traditional-sattu',
+  },
+  {
+    name: 'Premium Makhana',
+    status: 'Coming Soon',
+    image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=900&q=80',
+    description: 'Naturally light, crunchy, and packed with nutrition. Carefully sourced from Bihar and prepared for modern healthy lifestyles. Coming soon to EcoNutrients.',
+    shortDescription: 'Naturally light, crunchy, and packed with nutrition.',
+    price: null,
+    packSize: '',
+    highlights: [],
+    comingSoon: true,
+    slug: 'makhana',
+  },
+];
+
 export const allProducts = [...products, ...comingSoonProducts];
 
 export function getProductBySlug(slug: string): Product | undefined {

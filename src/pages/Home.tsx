@@ -1,5 +1,5 @@
 import { Link } from 'react-router';
-import { products, features, futureChapters, recipes } from '../data/products';
+import { products, features, futureChapters, recipes, biharKitchenProducts } from '../data/products';
 import { formatCurrency } from '../utils/currency';
 import { useCart } from '../context/CartContext';
 import FAQAccordion from '../components/FAQAccordion';
@@ -160,6 +160,14 @@ export default function Home() {
     }
   };
 
+  const handleAddKitchenProduct = (slug: string) => {
+    const fullProduct = products.find((p) => p.slug === slug);
+    if (fullProduct) {
+      addItem(fullProduct, 1);
+      toast.success(fullProduct.name + ' added to cart');
+    }
+  };
+
   return (
     <div className="page-shell">
       <style>{styles}</style>
@@ -227,24 +235,164 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ── PRODUCTS ── */}
+        {/* ── PRODUCTS: From Bihar's Kitchen ── */}
         <section id="products" className="section">
           <div className="section-inner">
             <div className="section-header"><h2>From Bihar&apos;s Kitchen</h2><p>Curated staples that carry the soul of the state into contemporary homes.</p></div>
-            <div className="products-grid">
-              {products.map((product) => (
-                <article key={product.name} className="product-card">
-                  <div className="product-media"><img src={product.images[0]} alt={product.name} /></div>
-                  <div className="product-body">
-                    <span className="product-badge">{product.badge}</span>
+            <div className="bihar-kitchen-grid">
+              {biharKitchenProducts.map((product) => (
+                <article key={product.name} className="bihar-kitchen-card">
+                  <div className="bihar-kitchen-media">
+                    <img src={product.image} alt={product.name} loading="lazy" />
+                  </div>
+                  <div className="bihar-kitchen-body">
+                    <span className="product-badge" style={product.comingSoon ? { background: 'rgba(212,168,79,0.12)', color: 'var(--gold)' } : undefined}>
+                      {product.status}
+                    </span>
                     <h3>{product.name}</h3>
-                    <p>{product.description}</p>
-                    <a className="product-link" href="#">Learn More &rarr;</a>
+
+                    {!product.comingSoon && product.price !== null && (
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.6rem' }}>
+                        <span style={{ fontFamily: 'var(--serif)', fontSize: '1.3rem', fontWeight: 700, color: 'var(--green)' }}>
+                          {formatCurrency(product.price)}
+                        </span>
+                        <span style={{ fontSize: 13, color: 'var(--text-soft)' }}>/ {product.packSize}</span>
+                      </div>
+                    )}
+
+                    {product.comingSoon && (
+                      <div style={{ marginBottom: '0.6rem' }}>
+                        <span style={{ display: 'inline-block', padding: '0.3rem 0.8rem', borderRadius: 999, background: 'rgba(212,168,79,0.1)', color: 'var(--gold)', fontSize: 13, fontWeight: 600 }}>
+                          Launching Soon
+                        </span>
+                      </div>
+                    )}
+
+                    {product.highlights.length > 0 && (
+                      <ul className="bihar-kitchen-highlights">
+                        {product.highlights.map((h) => (
+                          <li key={h}>{h}</li>
+                        ))}
+                      </ul>
+                    )}
+
+                    <p>{product.shortDescription}</p>
+
+                    <div className="bihar-kitchen-actions">
+                      {!product.comingSoon ? (
+                        <>
+                          <Link to={'/product/' + product.slug} className="btn btn-primary">View Product</Link>
+                          <button type="button" className="btn btn-cream" onClick={() => handleAddKitchenProduct(product.slug)}>Add to Cart</button>
+                        </>
+                      ) : (
+                        <>
+                          <button type="button" className="btn btn-primary" style={{ background: 'var(--gold)', color: 'var(--charcoal)' }}
+                            onClick={() => toast.success("We'll let you know when Makhana launches.")}
+                          >Notify Me</button>
+                          <Link to={'/product/' + product.slug} className="btn btn-cream">Learn More</Link>
+                        </>
+                      )}
+                    </div>
                   </div>
                 </article>
               ))}
             </div>
+
+            {/* Bottom message */}
+            <div style={{ textAlign: 'center', maxWidth: 620, margin: '3rem auto 0' }}>
+              <p style={{ fontFamily: 'var(--serif)', fontSize: '1.25rem', fontStyle: 'italic', color: 'var(--green)', lineHeight: 1.5, margin: '0 0 0.5rem' }}>
+                More authentic and nutritious foods from Bihar are on the way.
+              </p>
+              <p style={{ fontSize: 15, color: 'var(--text-soft)', lineHeight: 1.7, margin: 0 }}>
+                EcoNutrients is expanding its collection with carefully selected traditional foods crafted for healthier modern living.
+              </p>
+            </div>
           </div>
+          <style>{`
+            .bihar-kitchen-grid {
+              display: grid;
+              grid-template-columns: repeat(2, minmax(0, 1fr));
+              gap: 1.6rem;
+            }
+            .bihar-kitchen-card {
+              background: white;
+              border: 1px solid rgba(27,27,27,0.06);
+              border-radius: 1.4rem;
+              overflow: hidden;
+              box-shadow: var(--shadow-sm);
+              transition: all 350ms ease;
+              display: flex;
+              flex-direction: column;
+            }
+            .bihar-kitchen-card:hover {
+              box-shadow: var(--shadow-md);
+              transform: translateY(-3px);
+            }
+            .bihar-kitchen-media {
+              height: 280px;
+              overflow: hidden;
+            }
+            .bihar-kitchen-media img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              transition: transform 600ms ease;
+            }
+            .bihar-kitchen-card:hover .bihar-kitchen-media img {
+              transform: scale(1.08);
+            }
+            .bihar-kitchen-body {
+              padding: 1.5rem 1.6rem 1.8rem;
+              display: flex;
+              flex-direction: column;
+              gap: 0.5rem;
+              flex: 1;
+            }
+            .bihar-kitchen-body h3 {
+              font-family: var(--serif);
+              font-size: 1.4rem;
+              color: var(--green);
+              margin: 0;
+            }
+            .bihar-kitchen-body p {
+              color: var(--text-soft);
+              line-height: 1.7;
+              margin: 0;
+              font-size: 0.95rem;
+            }
+            .bihar-kitchen-highlights {
+              list-style: none;
+              padding: 0;
+              margin: 0;
+              display: flex;
+              flex-wrap: wrap;
+              gap: 0.4rem;
+            }
+            .bihar-kitchen-highlights li {
+              padding: 0.25rem 0.65rem;
+              border-radius: 999px;
+              background: rgba(22,59,46,0.06);
+              color: var(--green);
+              font-size: 0.75rem;
+              font-weight: 600;
+            }
+            .bihar-kitchen-actions {
+              display: flex;
+              gap: 0.7rem;
+              flex-wrap: wrap;
+              margin-top: auto;
+              padding-top: 0.8rem;
+            }
+            .bihar-kitchen-actions .btn {
+              font-size: 0.85rem;
+              padding: 0.7rem 1.3rem;
+            }
+            @media (max-width: 720px) {
+              .bihar-kitchen-grid {
+                grid-template-columns: 1fr;
+              }
+            }
+          `}</style>
         </section>
 
         {/* ── STORY ── */}
