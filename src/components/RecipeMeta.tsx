@@ -5,7 +5,19 @@ interface RecipeMetaProps {
   servings?: string;
 }
 
+const metaStyle: React.CSSProperties = {
+  fontSize: '0.77rem',
+  color: 'var(--text-soft)',
+  display: 'inline-flex',
+  alignItems: 'center',
+  gap: '0.25rem',
+  lineHeight: 1,
+};
+
 export default function RecipeMeta({ difficulty, cookTime, prepTime, servings }: RecipeMetaProps) {
+  const hasAny = cookTime || cookTime !== '0 mins' || prepTime || difficulty || servings;
+  if (!hasAny) return null;
+
   return (
     <div style={{
       display: 'flex',
@@ -52,13 +64,3 @@ export default function RecipeMeta({ difficulty, cookTime, prepTime, servings }:
     </div>
   );
 }
-
-const metaStyle: React.CSSProperties = {
-  fontSize: '0.77rem',
-  color: 'var(--text-soft)',
-  display: 'inline-flex',
-  alignItems: 'center',
-  gap: '0.25rem',
-  lineHeight: 1,
-};
-
