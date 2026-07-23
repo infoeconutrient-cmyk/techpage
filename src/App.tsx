@@ -9,6 +9,8 @@ import Home from './pages/Home';
 import Shop from './pages/Shop';
 import ProductDetail from './pages/ProductDetail';
 import Checkout from './pages/Checkout';
+import Recipes from './pages/Recipes';
+import RecipeDetail from './pages/RecipeDetail';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -38,6 +40,8 @@ function AppShell() {
         <Route path="/shop" element={<Shop />} />
         <Route path="/product/:slug" element={<ProductDetail />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/recipes" element={<Recipes />} />
+        <Route path="/recipes/:slug" element={<RecipeDetail />} />
       </Routes>
       <Footer />
       <CartDrawer open={cartOpen} onClose={() => setCartOpen(false)} />
