@@ -15,7 +15,7 @@ const metaStyle: React.CSSProperties = {
 };
 
 export default function RecipeMeta({ difficulty, cookTime, prepTime, servings }: RecipeMetaProps) {
-  const hasAny = cookTime || cookTime !== '0 mins' || prepTime || difficulty || servings;
+  const hasAny = !!(cookTime || prepTime || difficulty || servings);
   if (!hasAny) return null;
 
   return (
