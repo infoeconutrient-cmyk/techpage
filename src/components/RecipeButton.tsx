@@ -1,4 +1,5 @@
 import { Link } from 'react-router';
+import React from 'react';
 
 interface RecipeButtonProps {
   to: string;
@@ -51,22 +52,28 @@ const variants: Record<string, React.CSSProperties> = {
   },
 };
 
+const hoverStyle: React.CSSProperties = {
+  transform: 'translateY(-2px)',
+  boxShadow: '0 8px 24px rgba(22,59,46,0.18)',
+};
+
 export default function RecipeButton({ to, children, variant = 'primary', onClick }: RecipeButtonProps) {
+  const [isHovered, setIsHovered] = React.useState(false);
+  const currentStyle = {
+    ...variants[variant],
+    ...(isHovered ? hoverStyle : {}),
+  };
+
   if (onClick) {
     return (
       <button
         type="button"
         onClick={onClick}
-        style={variants[variant]}
-        className="recipe-btn"
+        style={currentStyle}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
       >
         {children}
-        <style>{`
-          .recipe-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(22,59,46,0.18);
-          }
-        `}</style>
       </button>
     );
   }
@@ -74,17 +81,11 @@ export default function RecipeButton({ to, children, variant = 'primary', onClic
   return (
     <Link
       to={to}
-      style={variants[variant]}
-      className="recipe-btn"
+      style={currentStyle}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
       {children}
-      <style>{`
-        .recipe-btn:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 8px 24px rgba(22,59,46,0.18);
-        }
-      `}</style>
     </Link>
   );
 }
-
