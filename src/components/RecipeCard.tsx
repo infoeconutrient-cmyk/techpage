@@ -159,7 +159,7 @@ export default function RecipeCard({ recipe, variant = 'home' }: RecipeCardProps
         {!isRelated && (
           <div style={{ marginTop: 'auto', paddingTop: '0.8rem' }}>
             <RecipeButton to={'/recipes/' + recipe.slug}>
-              {isHome ? 'Explore Recipe →' : 'View Recipe'}
+              See Full Recipe
             </RecipeButton>
           </div>
         )}
