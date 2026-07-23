@@ -1,50 +1,41 @@
-# TODO — EcoNutrients Visual Redesign
+# Ecommerce Extension - Implementation TODO
 
-# TODO — EcoNutrients Visual Redesign
+## Phase 1: Foundation ✅
+- [x] Create `src/data/products.ts` — Product catalog data (future-ready)
+- [x] Create `src/utils/currency.ts` — INR currency formatting
+- [x] Create `src/utils/storage.ts` — localStorage helpers
+- [x] Create `src/context/CartContext.tsx` — Cart state management with persistence
 
-## Step 1: Add Google Fonts (Playfair Display + Inter)
-- [x] Edit index.html to add Google Fonts link
+## Phase 2: Reusable Components ✅
+- [x] Create `src/components/Navbar.tsx` — Extended navbar with Shop, Search, Cart, mobile menu
+- [x] Create `src/components/Footer.tsx` — Extended footer with policies, social links
+- [x] Create `src/components/ProductCard.tsx` — Reusable product card
+- [x] Create `src/components/ProductGrid.tsx` — Responsive grid wrapper
+- [x] Create `src/components/CartDrawer.tsx` — Slide-out cart drawer
+- [x] Create `src/components/QuantitySelector.tsx` — +/- quantity control
+- [x] Create `src/components/SearchBar.tsx` — Instant search filter
+- [x] Create `src/components/ReviewSection.tsx` — Reviews placeholder
+- [x] Create `src/components/FAQAccordion.tsx` — FAQ accordion component
+- [x] Create `src/components/Toast.tsx` — Toast notification component
+- [x] Create `src/components/CheckoutForm.tsx` — Shipping form
+- [x] Create `src/components/OrderSummary.tsx` — Order summary panel
+- [x] Create `src/components/Stars.tsx` — Rating stars placeholder
 
-## Step 2: Update Design Tokens & Global Styles
-- [x] Refine color palette (deeper green, warmer beige, richer mustard)
-- [x] Add serif heading font-family
-- [x] Update shadows, borders, spacing
+## Phase 3: Pages ✅
+- [x] Create `src/pages/Home.tsx` — Existing homepage + new sections (Featured Product, Why Choose, Reviews, FAQ)
+- [x] Create `src/pages/Shop.tsx` — /shop page with search, filters, grid
+- [x] Create `src/pages/ProductDetail.tsx` — /product/:slug full product page
+- [x] Create `src/pages/Checkout.tsx` — /checkout page with form + summary
 
-## Step 3: Restyle Navigation Bar
-- [x] Premium glass-morphism effect
-- [x] Refined typography
+## Phase 4: App Shell ✅
+- [x] Create `src/App.tsx` — Router setup, CartProvider, layout structure
+- [x] Update `src/main.tsx` — Bootstrap new App with routing
+- [x] Build verified — 72 modules, 0 errors, 365ms
 
-## Step 4: Restyle Hero Section
-- [x] Larger editorial-style serif headline
-- [x] Better card styling
-- [x] Premium image treatment
-
-## Step 5: Restyle Buttons
-- [x] Smooth hover transitions (scale + shadow)
-- [x] Dark green primary with subtle gradient
-- [x] Cream secondary with refined border
-
-## Step 6: Restyle Cards (Mission, Products, Recipes, Journey, Feature, Founder)
-- [x] Warmer beige/tan backgrounds
-- [x] Minimal borders with refined rgba values
-- [x] Soft layered shadows
-- [x] Subtle hover elevate effect
-- [x] Consistent border-radius
-
-## Step 7: Restyle Sections (Story, Journey, Recipes, Contact, Footer)
-- [x] Editorial typography for headings
-- [x] Better spacing and visual hierarchy
-
-## Step 8: Add Smooth Hover Animations
-- [x] Card hover: subtle lift + shadow deepening
-- [x] Button hover: lift + shadow + background shift
-- [x] Link hover effects
-
-## Step 9: Update Images
-- [x] Premium editorial food photography URLs (kept current Unsplash images — premium quality maintained)
-
-## Step 10: Verify & Test
-- [x] Code review complete — structure and syntax verified
-- [x] All content, text, sections, layout preserved
-- [x] Visual redesign applied to all components
+## Phase 5: Testing ⏳
+- [x] Build passes with zero errors
+- [ ] User to verify all routes work (/ , /shop, /product/traditional-sattu, /checkout)
+- [ ] User to verify cart add/remove/update/persistence
+- [ ] User to verify responsive layout
+- [ ] User to verify existing sections unchanged
 
