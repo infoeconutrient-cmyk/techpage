@@ -436,13 +436,13 @@ export default function Home() {
             <div className="section-header"><h2>Recipes</h2><p>Simple, beautiful ways to bring regional nourishment into everyday rituals.</p></div>
             <div className="recipes-grid">
               {recipes.map((recipe) => (
-                <article key={recipe.title} className="recipe-card">
+                <Link key={recipe.title} to={'/recipes/' + recipe.slug} className="recipe-card">
                   <div className="recipe-media"><img src={recipe.image} alt={recipe.title} /></div>
-                  <div className="recipe-body"><h3>{recipe.title}</h3><p>{recipe.description}</p><a className="product-link" href="#">Explore Recipe &rarr;</a></div>
-                </article>
+                  <div className="recipe-body"><h3>{recipe.title}</h3><p>{recipe.description}</p><span className="product-link">Explore Recipe &rarr;</span></div>
+                </Link>
               ))}
             </div>
-            <div className="hero-actions" style={{ justifyContent: 'center', marginTop: '1.4rem' }}><a className="btn btn-cream" href="#recipes">Explore Recipes</a></div>
+            <div className="hero-actions" style={{ justifyContent: 'center', marginTop: '1.4rem' }}><Link className="btn btn-cream" to="/recipes">Explore Recipes</Link></div>
           </div>
         </section>
 
