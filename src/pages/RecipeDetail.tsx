@@ -1,81 +1,7 @@
 import { useParams, Link } from 'react-router';
 import { recipes } from '../data/recipes';
-
-const styles = `
-:root {
-  --cream: #f7f3ea;
-  --cream-strong: #ede6d9;
-  --text: #1b1b1b;
-  --text-soft: #6b6f6b;
-  --green: #163b2e;
-  --green-soft: #1d5a45;
-  --gold: #d4a84f;
-  --olive: #1d241f;
-  --charcoal: #1b1b1b;
-  --border: rgba(27,27,27,0.08);
-  --shadow-sm: 0 4px 12px rgba(27,27,27,0.06);
-  --shadow-md: 0 8px 28px rgba(27,27,27,0.08);
-  --shadow-lg: 0 20px 50px rgba(27,27,27,0.12);
-  --serif: 'Playfair Display', Georgia, serif;
-  --sans: Inter, 'Segoe UI', system-ui, sans-serif;
-}
-.recipe-detail-page { min-height: 100vh; background: var(--cream); }
-.recipe-detail-page h1, .recipe-detail-page h2, .recipe-detail-page h3 { margin: 0; font-family: var(--serif); line-height: 1.08; letter-spacing: -0.02em; }
-.recipe-detail-page h1 { font-size: clamp(2rem,3.5vw,3.5rem); font-weight: 700; color: var(--green); }
-.recipe-detail-page h2 { font-size: clamp(1.4rem,2vw,2rem); font-weight: 700; color: var(--green); letter-spacing: -0.02em; margin-bottom: 1rem; }
-.recipe-detail-page h3 { font-family: var(--serif); font-weight: 600; letter-spacing: -0.01em; color: var(--green); font-size: 1.1rem; }
-.recipe-hero-image { width: 100%; height: clamp(320px, 40vh, 520px); overflow: hidden; }
-.recipe-hero-image img { width: 100%; height: 100%; object-fit: cover; }
-.recipe-breadcrumb { max-width: 1160px; margin: 0 auto; padding: 1.2rem 2.5rem; display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: var(--text-soft); }
-.recipe-breadcrumb a { color: var(--green); font-weight: 500; }
-.recipe-breadcrumb a:hover { color: var(--gold); }
-.recipe-content { max-width: 1160px; margin: 0 auto; padding: 0 2.5rem 3rem; display: grid; grid-template-columns: 1fr 360px; gap: 2.5rem; align-items: start; }
-.recipe-main { background: white; border: 1px solid var(--border); border-radius: 1.4rem; padding: 2.2rem 2.5rem; box-shadow: var(--shadow-sm); }
-.recipe-sidebar { display: flex; flex-direction: column; gap: 1.5rem; }
-.recipe-info-card { background: white; border: 1px solid var(--border); border-radius: 1.4rem; padding: 1.6rem; box-shadow: var(--shadow-sm); }
-.recipe-info-card h3 { margin-bottom: 0.8rem; }
-.recipe-info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
-.recipe-info-item { text-align: center; padding: 0.7rem 0.5rem; background: var(--cream); border-radius: 0.8rem; }
-.recipe-info-item .label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-soft); font-weight: 600; }
-.recipe-info-item .value { font-family: var(--serif); font-size: 1rem; font-weight: 700; color: var(--green); margin-top: 0.2rem; }
-.recipe-top-meta { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 1.2rem; }
-.recipe-top-meta span { font-size: 0.85rem; color: var(--text-soft); display: flex; align-items: center; gap: 0.3rem; }
-.recipe-description { font-size: 1.02rem; line-height: 1.8; color: var(--text-soft); margin-bottom: 2rem; }
-.ingredients-box { background: var(--cream); border-radius: 1rem; padding: 1.4rem 1.6rem; margin-bottom: 2rem; }
-.ingredients-box ul { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem 1rem; }
-.ingredients-box li { padding: 0.3rem 0; font-size: 0.95rem; color: var(--text); position: relative; padding-left: 1.2rem; }
-.ingredients-box li::before { content: ''; position: absolute; left: 0; top: 0.7rem; width: 0.4rem; height: 0.4rem; border-radius: 50%; background: var(--green); }
-.instructions-list { counter-reset: step; margin-bottom: 2rem; }
-.instruction-step { display: flex; gap: 1.2rem; padding: 1rem 1.2rem; background: white; border: 1px solid var(--border); border-radius: 1rem; margin-bottom: 0.8rem; transition: all 200ms ease; }
-.instruction-step:hover { box-shadow: var(--shadow-sm); transform: translateX(3px); }
-.instruction-step .step-num { font-family: var(--serif); font-size: 1.4rem; font-weight: 700; color: var(--gold); min-width: 2rem; line-height: 1.4; }
-.instruction-step .step-text { font-size: 0.95rem; line-height: 1.7; color: var(--text); }
-.nutrition-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.6rem; margin-bottom: 2rem; }
-.nutrition-item { text-align: center; padding: 0.8rem 0.3rem; background: white; border: 1px solid var(--border); border-radius: 0.8rem; }
-.nutrition-item .n-value { font-family: var(--serif); font-size: 1.1rem; font-weight: 700; color: var(--green); }
-.nutrition-item .n-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-soft); margin-top: 0.15rem; }
-.why-healthy-box { background: white; border: 1px solid var(--border); border-radius: 1rem; padding: 1.2rem 1.4rem; margin-bottom: 2rem; }
-.why-healthy-box p { margin: 0; font-size: 0.95rem; line-height: 1.7; color: var(--text-soft); }
-.tips-box { background: var(--cream-strong); border-radius: 1rem; padding: 1.2rem 1.4rem; margin-bottom: 2rem; }
-.tips-box ul { list-style: none; padding: 0; margin: 0.6rem 0 0; }
-.tips-box li { padding: 0.25rem 0; font-size: 0.9rem; color: var(--text); padding-left: 1.2rem; position: relative; }
-.tips-box li::before { content: '💡'; position: absolute; left: 0; top: 0.2rem; font-size: 0.7rem; }
-.storage-box { background: white; border: 1px solid var(--border); border-radius: 1rem; padding: 1.2rem 1.4rem; margin-bottom: 2rem; }
-.storage-box p { margin: 0.4rem 0 0; font-size: 0.9rem; line-height: 1.7; color: var(--text-soft); }
-.related-section { max-width: 1160px; margin: 0 auto; padding: 0 2.5rem 3rem; }
-.related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; margin-top: 1.2rem; }
-.related-card { background: white; border: 1px solid var(--border); border-radius: 1.4rem; overflow: hidden; box-shadow: var(--shadow-sm); transition: all 350ms ease; }
-.related-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
-.related-card-media { height: 180px; overflow: hidden; }
-.related-card-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 600ms ease; }
-.related-card:hover .related-card-media img { transform: scale(1.08); }
-.related-card-body { padding: 1rem 1.2rem 1.3rem; }
-.related-card-body h3 { font-size: 1rem; margin-bottom: 0.3rem; }
-.related-card-body p { font-size: 0.85rem; color: var(--text-soft); line-height: 1.6; margin: 0; }
-.btn-back { display: inline-flex; align-items: center; gap: 0.4rem; }
-@media (max-width: 980px) { .recipe-content { grid-template-columns: 1fr; } .related-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 720px) { .recipe-content { padding: 0 1.2rem 2rem; } .recipe-breadcrumb { padding: 1rem 1.2rem; } .recipe-main { padding: 1.4rem; } .ingredients-box ul { grid-template-columns: 1fr; } .nutrition-grid { grid-template-columns: repeat(3, 1fr); } .related-grid { grid-template-columns: 1fr; } }
-`;
+import RecipeButton from '../components/RecipeButton';
+import RecipeCard from '../components/RecipeCard';
 
 export default function RecipeDetail() {
   const { slug } = useParams<{ slug: string }>();
@@ -84,166 +10,396 @@ export default function RecipeDetail() {
 
   if (!recipe) {
     return (
-      <div className="recipe-detail-page">
-        <style>{styles}</style>
-        <div className="recipe-breadcrumb">
-          <Link to="/">Home</Link><span>›</span><Link to="/recipes">Recipes</Link><span>›</span><span>Not Found</span>
+      <div style={{ minHeight: '100vh', background: 'var(--cream)', padding: '2rem' }}>
+        <div style={{ maxWidth: 1160, margin: '0 auto', padding: '1.2rem 0' }}>
+          <Link to="/" style={{ color: 'var(--green)', fontWeight: 500, fontSize: '0.85rem', textDecoration: 'none' }}>Home</Link>
+          <span style={{ color: 'var(--text-soft)', margin: '0 0.5rem' }}>›</span>
+          <Link to="/recipes" style={{ color: 'var(--green)', fontWeight: 500, fontSize: '0.85rem', textDecoration: 'none' }}>Recipes</Link>
+          <span style={{ color: 'var(--text-soft)', margin: '0 0.5rem' }}>›</span>
+          <span style={{ color: 'var(--text-soft)', fontSize: '0.85rem' }}>Not Found</span>
         </div>
         <div style={{ textAlign: 'center', padding: '4rem 2rem' }}>
-          <h2>Recipe Not Found</h2>
+          <h2 style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(1.4rem,2vw,2rem)', fontWeight: 700, color: 'var(--green)', margin: 0 }}>Recipe Not Found</h2>
           <p style={{ color: 'var(--text-soft)', margin: '0.5rem 0 1.5rem' }}>The recipe you are looking for does not exist.</p>
-          <Link to="/recipes" className="btn btn-primary">Back to Recipes</Link>
+          <RecipeButton to="/recipes">Back to Recipes</RecipeButton>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="recipe-detail-page">
-      <style>{styles}</style>
-
+    <div style={{ minHeight: '100vh', background: 'var(--cream)' }}>
       {/* Hero Image */}
-      <div className="recipe-hero-image">
-        <img src={recipe.image} alt={recipe.title} />
+      <div style={{ width: '100%', height: 'clamp(320px, 40vh, 520px)', overflow: 'hidden' }}>
+        <img src={recipe.image} alt={recipe.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
       </div>
 
-      {/* Breadcrumb */}
-      <div className="recipe-breadcrumb">
-        <Link to="/">Home</Link>
-        <span>›</span>
-        <Link to="/recipes">Recipes</Link>
-        <span>›</span>
-        <span>{recipe.title}</span>
+      {/* Breadcrumb + Back */}
+      <div style={{
+        maxWidth: 1160,
+        margin: '0 auto',
+        padding: '1.2rem 2.5rem',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        flexWrap: 'wrap',
+        gap: '0.5rem',
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.85rem', color: 'var(--text-soft)' }}>
+          <Link to="/" style={{ color: 'var(--green)', fontWeight: 500, textDecoration: 'none' }}
+            onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--gold)'; }}
+            onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--green)'; }}
+          >Home</Link>
+          <span>›</span>
+          <Link to="/recipes" style={{ color: 'var(--green)', fontWeight: 500, textDecoration: 'none' }}
+            onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--gold)'; }}
+            onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--green)'; }}
+          >Recipes</Link>
+          <span>›</span>
+          <span>{recipe.title}</span>
+        </div>
+        <RecipeButton to="/recipes" variant="back">
+          <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+            <path d="M19 12H5" /><path d="M12 19l-7-7 7-7" />
+          </svg>
+          Back to Recipes
+        </RecipeButton>
       </div>
 
       {/* Main Content */}
-      <div className="recipe-content">
-        {/* Left: Main */}
-        <div className="recipe-main">
-          <h1>{recipe.title}</h1>
-          <div className="recipe-top-meta">
-            <span>⏱ Prep: {recipe.prepTime}</span>
-            {recipe.cookTime !== '0 mins' && <span>🔥 Cook: {recipe.cookTime}</span>}
-            <span>📊 {recipe.difficulty}</span>
-            <span>🍽 Serves: {recipe.servings}</span>
-            <span>🏷 {recipe.category}</span>
+      <div style={{
+        maxWidth: 1160,
+        margin: '0 auto',
+        padding: '0 2.5rem 3rem',
+        display: 'grid',
+        gridTemplateColumns: '1fr 360px',
+        gap: '2.5rem',
+        alignItems: 'start',
+      }} className="recipe-detail-layout">
+
+        {/* ── LEFT: MAIN ── */}
+        <div style={{
+          background: 'white',
+          border: '1px solid var(--border)',
+          borderRadius: '1.4rem',
+          padding: '2.5rem',
+          boxShadow: 'var(--shadow-sm)',
+        }}>
+          {/* Title */}
+          <h1 style={{
+            fontFamily: 'var(--serif)',
+            fontSize: 'clamp(2rem,3.5vw,3.5rem)',
+            fontWeight: 700,
+            color: 'var(--green)',
+            margin: 0,
+            lineHeight: 1.08,
+            letterSpacing: '-0.02em',
+          }}>{recipe.title}</h1>
+
+          {/* Meta row */}
+          <div style={{
+            display: 'flex',
+            gap: '1.5rem',
+            flexWrap: 'wrap',
+            marginTop: '1.2rem',
+            marginBottom: '1.5rem',
+          }}>
+            {recipe.prepTime && (
+              <span style={{ fontSize: '0.85rem', color: 'var(--text-soft)', display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
+                <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"><circle cx={12} cy={12} r={10} /><path d="M12 6v6l4 2" /></svg>
+                Prep: {recipe.prepTime}
+              </span>
+            )}
+            {recipe.cookTime !== '0 mins' && (
+              <span style={{ fontSize: '0.85rem', color: 'var(--text-soft)', display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
+                <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"><path d="M12 20V10" /><path d="M18 20V4" /><path d="M6 20v-4" /></svg>
+                Cook: {recipe.cookTime}
+              </span>
+            )}
+            <span style={{ fontSize: '0.85rem', color: 'var(--text-soft)', display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
+              <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"><path d="M12 20V10" /><path d="M18 20V4" /><path d="M6 20v-4" /></svg>
+              {recipe.difficulty}
+            </span>
+            <span style={{ fontSize: '0.85rem', color: 'var(--text-soft)', display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
+              <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2" /><path d="M7 2v20" /><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7" /></svg>
+              Serves: {recipe.servings}
+            </span>
           </div>
 
-          <p className="recipe-description">{recipe.description}</p>
+          {/* Description */}
+          <p style={{
+            fontSize: '1.05rem',
+            lineHeight: 1.8,
+            color: 'var(--text-soft)',
+            margin: '0 0 2.5rem',
+            maxWidth: 640,
+          }}>{recipe.description}</p>
 
           {/* Ingredients */}
-          <div className="ingredients-box">
-            <h3>Ingredients</h3>
-            <ul>
+          <div style={{
+            background: 'var(--cream)',
+            borderRadius: '1rem',
+            padding: '1.6rem 1.8rem',
+            marginBottom: '2.5rem',
+          }}>
+            <h2 style={{ fontSize: 'clamp(1.1rem,1.4vw,1.3rem)', fontWeight: 700, color: 'var(--green)', fontFamily: 'var(--serif)', margin: '0 0 1rem', letterSpacing: '-0.02em' }}>Ingredients</h2>
+            <ul style={{
+              listStyle: 'none',
+              padding: 0,
+              margin: 0,
+              display: 'grid',
+              gridTemplateColumns: '1fr 1fr',
+              gap: '0.6rem 1.5rem',
+            }} className="ingredients-grid">
               {recipe.ingredients.map((ing, i) => (
-                <li key={i}>{ing}</li>
+                <li key={i} style={{
+                  padding: '0.3rem 0 0.3rem 1.2rem',
+                  fontSize: '0.95rem',
+                  color: 'var(--text)',
+                  lineHeight: 1.5,
+                  position: 'relative',
+                }}>
+                  <span style={{
+                    content: '',
+                    position: 'absolute',
+                    left: 0,
+                    top: '0.65rem',
+                    width: '0.4rem',
+                    height: '0.4rem',
+                    borderRadius: '50%',
+                    background: 'var(--green)',
+                    display: 'inline-block',
+                  }} />
+                  {ing}
+                </li>
               ))}
             </ul>
+            <style>{`
+              @media (max-width: 720px) {
+                .ingredients-grid { grid-template-columns: 1fr !important; }
+              }
+            `}</style>
           </div>
 
           {/* Instructions */}
-          <h3>Step-by-Step Instructions</h3>
-          <div className="instructions-list">
+          <h2 style={{ fontSize: 'clamp(1.1rem,1.4vw,1.3rem)', fontWeight: 700, color: 'var(--green)', fontFamily: 'var(--serif)', margin: '0 0 1.2rem', letterSpacing: '-0.02em' }}>
+            Step-by-Step Instructions
+          </h2>
+          <div style={{ marginBottom: '2.5rem' }}>
             {recipe.instructions.map((inst) => (
-              <div key={inst.step} className="instruction-step">
-                <span className="step-num">{String(inst.step).padStart(2, '0')}</span>
-                <span className="step-text">{inst.text}</span>
+              <div key={inst.step} style={{
+                display: 'flex',
+                gap: '1.2rem',
+                padding: '1rem 1.2rem',
+                background: 'white',
+                border: '1px solid var(--border)',
+                borderRadius: '1rem',
+                marginBottom: '0.8rem',
+                transition: 'all 200ms ease',
+              }}
+                onMouseEnter={(e) => { e.currentTarget.style.boxShadow = 'var(--shadow-sm)'; e.currentTarget.style.transform = 'translateX(3px)'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translateX(0)'; }}
+              >
+                <span style={{
+                  fontFamily: 'var(--serif)',
+                  fontSize: '1.4rem',
+                  fontWeight: 700,
+                  color: 'var(--gold)',
+                  minWidth: '2rem',
+                  lineHeight: 1.4,
+                }}>{String(inst.step).padStart(2, '0')}</span>
+                <span style={{ fontSize: '0.95rem', lineHeight: 1.7, color: 'var(--text)' }}>{inst.text}</span>
               </div>
             ))}
           </div>
 
           {/* Nutrition */}
-          <h3>Nutrition Information</h3>
-          <p style={{ fontSize: 13, color: 'var(--text-soft)', marginTop: -8, marginBottom: '0.8rem' }}>Per serving</p>
-          <div className="nutrition-grid">
+          <h2 style={{ fontSize: 'clamp(1.1rem,1.4vw,1.3rem)', fontWeight: 700, color: 'var(--green)', fontFamily: 'var(--serif)', margin: '0 0 0.3rem', letterSpacing: '-0.02em' }}>
+            Nutrition Information
+          </h2>
+          <p style={{ fontSize: 13, color: 'var(--text-soft)', margin: '0 0 1rem' }}>Per serving</p>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(5, 1fr)',
+            gap: '0.6rem',
+            marginBottom: '2.5rem',
+          }} className="nutrition-detail-grid">
             {Object.entries(recipe.nutrition).map(([key, val]) => (
-              <div key={key} className="nutrition-item">
-                <div className="n-value">{val}</div>
-                <div className="n-label">{key}</div>
+              <div key={key} style={{
+                textAlign: 'center',
+                padding: '0.9rem 0.3rem',
+                background: 'white',
+                border: '1px solid var(--border)',
+                borderRadius: '0.8rem',
+              }}>
+                <div style={{ fontFamily: 'var(--serif)', fontSize: '1.1rem', fontWeight: 700, color: 'var(--green)' }}>{val}</div>
+                <div style={{ fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--text-soft)', marginTop: '0.15rem' }}>{key}</div>
               </div>
             ))}
           </div>
+          <style>{`
+            @media (max-width: 720px) {
+              .nutrition-detail-grid { grid-template-columns: repeat(3, 1fr) !important; }
+            }
+          `}</style>
 
           {/* Why Healthy */}
-          <div className="why-healthy-box">
-            <h3 style={{ marginBottom: '0.4rem', fontSize: '1rem' }}>Why This Recipe is Healthy</h3>
-            <p>{recipe.whyHealthy}</p>
+          <div style={{
+            background: 'white',
+            border: '1px solid var(--border)',
+            borderRadius: '1rem',
+            padding: '1.3rem 1.5rem',
+            marginBottom: '2rem',
+          }}>
+            <h3 style={{ fontFamily: 'var(--serif)', fontSize: '1rem', fontWeight: 600, color: 'var(--green)', margin: '0 0 0.4rem', letterSpacing: '-0.01em' }}>
+              Why This Recipe is Healthy
+            </h3>
+            <p style={{ margin: 0, fontSize: '0.95rem', lineHeight: 1.7, color: 'var(--text-soft)' }}>{recipe.whyHealthy}</p>
           </div>
 
           {/* Tips */}
-          <div className="tips-box">
-            <h3 style={{ marginBottom: 0, fontSize: '1rem' }}>Tips</h3>
-            <ul>
+          <div style={{
+            background: 'var(--cream-strong)',
+            borderRadius: '1rem',
+            padding: '1.3rem 1.5rem',
+            marginBottom: '2rem',
+          }}>
+            <h3 style={{ fontFamily: 'var(--serif)', fontSize: '1rem', fontWeight: 600, color: 'var(--green)', margin: 0, letterSpacing: '-0.01em' }}>
+              Tips
+            </h3>
+            <ul style={{ listStyle: 'none', padding: 0, margin: '0.6rem 0 0' }}>
               {recipe.tips.map((tip, i) => (
-                <li key={i}>{tip}</li>
+                <li key={i} style={{
+                  padding: '0.25rem 0 0.25rem 1.2rem',
+                  fontSize: '0.9rem',
+                  color: 'var(--text)',
+                  position: 'relative',
+                }}>
+                  <span style={{ position: 'absolute', left: 0, top: '0.2rem', fontSize: '0.7rem' }}>💡</span>
+                  {tip}
+                </li>
               ))}
             </ul>
           </div>
 
           {/* Storage */}
-          <div className="storage-box">
-            <h3 style={{ marginBottom: 0, fontSize: '1rem' }}>Storage Tips</h3>
-            <p>{recipe.storage}</p>
+          <div style={{
+            background: 'white',
+            border: '1px solid var(--border)',
+            borderRadius: '1rem',
+            padding: '1.3rem 1.5rem',
+            marginBottom: '2rem',
+          }}>
+            <h3 style={{ fontFamily: 'var(--serif)', fontSize: '1rem', fontWeight: 600, color: 'var(--green)', margin: 0, letterSpacing: '-0.01em' }}>
+              Storage Tips
+            </h3>
+            <p style={{ margin: '0.4rem 0 0', fontSize: '0.9rem', lineHeight: 1.7, color: 'var(--text-soft)' }}>{recipe.storage}</p>
           </div>
-
-          {/* Back button */}
-          <Link to="/recipes" className="btn btn-cream btn-back">
-            ← Back to Recipes
-          </Link>
         </div>
 
-        {/* Right: Sidebar */}
-        <div className="recipe-sidebar">
-          <div className="recipe-info-card">
-            <h3>Quick Info</h3>
-            <div className="recipe-info-grid">
-              <div className="recipe-info-item">
-                <div className="label">Prep Time</div>
-                <div className="value">{recipe.prepTime}</div>
-              </div>
-              {recipe.cookTime !== '0 mins' && (
-                <div className="recipe-info-item">
-                  <div className="label">Cook Time</div>
-                  <div className="value">{recipe.cookTime}</div>
+        {/* ── RIGHT: SIDEBAR ── */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+          {/* Quick Info */}
+          <div style={{
+            background: 'white',
+            border: '1px solid var(--border)',
+            borderRadius: '1.4rem',
+            padding: '1.6rem',
+            boxShadow: 'var(--shadow-sm)',
+          }}>
+            <h3 style={{ fontFamily: 'var(--serif)', fontSize: '1.1rem', fontWeight: 600, color: 'var(--green)', margin: '0 0 0.8rem', letterSpacing: '-0.01em' }}>
+              Quick Info
+            </h3>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.8rem' }}>
+              {recipe.prepTime && (
+                <div style={{ textAlign: 'center', padding: '0.7rem 0.5rem', background: 'var(--cream)', borderRadius: '0.8rem' }}>
+                  <div style={{ fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-soft)', fontWeight: 600 }}>Prep Time</div>
+                  <div style={{ fontFamily: 'var(--serif)', fontSize: '1rem', fontWeight: 700, color: 'var(--green)', marginTop: '0.2rem' }}>{recipe.prepTime}</div>
                 </div>
               )}
-              <div className="recipe-info-item">
-                <div className="label">Difficulty</div>
-                <div className="value">{recipe.difficulty}</div>
+              {recipe.cookTime !== '0 mins' && (
+                <div style={{ textAlign: 'center', padding: '0.7rem 0.5rem', background: 'var(--cream)', borderRadius: '0.8rem' }}>
+                  <div style={{ fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-soft)', fontWeight: 600 }}>Cook Time</div>
+                  <div style={{ fontFamily: 'var(--serif)', fontSize: '1rem', fontWeight: 700, color: 'var(--green)', marginTop: '0.2rem' }}>{recipe.cookTime}</div>
+                </div>
+              )}
+              <div style={{ textAlign: 'center', padding: '0.7rem 0.5rem', background: 'var(--cream)', borderRadius: '0.8rem' }}>
+                <div style={{ fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-soft)', fontWeight: 600 }}>Difficulty</div>
+                <div style={{ fontFamily: 'var(--serif)', fontSize: '1rem', fontWeight: 700, color: 'var(--green)', marginTop: '0.2rem' }}>{recipe.difficulty}</div>
               </div>
-              <div className="recipe-info-item">
-                <div className="label">Servings</div>
-                <div className="value">{recipe.servings}</div>
+              <div style={{ textAlign: 'center', padding: '0.7rem 0.5rem', background: 'var(--cream)', borderRadius: '0.8rem' }}>
+                <div style={{ fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-soft)', fontWeight: 600 }}>Servings</div>
+                <div style={{ fontFamily: 'var(--serif)', fontSize: '1rem', fontWeight: 700, color: 'var(--green)', marginTop: '0.2rem' }}>{recipe.servings}</div>
               </div>
             </div>
           </div>
 
-          <div className="recipe-info-card">
-            <h3>Category</h3>
-            <span className="filter-chip active" style={{ display: 'inline-block', marginTop: '0.3rem' }}>{recipe.category}</span>
+          {/* Category */}
+          <div style={{
+            background: 'white',
+            border: '1px solid var(--border)',
+            borderRadius: '1.4rem',
+            padding: '1.6rem',
+            boxShadow: 'var(--shadow-sm)',
+          }}>
+            <h3 style={{ fontFamily: 'var(--serif)', fontSize: '1.1rem', fontWeight: 600, color: 'var(--green)', margin: '0 0 0.8rem', letterSpacing: '-0.01em' }}>
+              Category
+            </h3>
+            <span style={{
+              display: 'inline-block',
+              padding: '0.5rem 1.1rem',
+              borderRadius: 999,
+              border: '1px solid var(--green)',
+              background: 'var(--green)',
+              color: 'white',
+              fontFamily: 'Inter, system-ui, sans-serif',
+              fontSize: '0.82rem',
+              fontWeight: 500,
+            }}>{recipe.category}</span>
           </div>
         </div>
       </div>
 
       {/* Related Recipes */}
       {relatedRecipes.length > 0 && (
-        <div className="related-section">
-          <h2 style={{ marginBottom: 0 }}>Related Recipes</h2>
-          <div className="related-grid">
+        <div style={{ maxWidth: 1160, margin: '0 auto', padding: '0 2.5rem 3.5rem' }}>
+          <h2 style={{
+            fontFamily: 'var(--serif)',
+            fontSize: 'clamp(1.4rem,2vw,2rem)',
+            fontWeight: 700,
+            color: 'var(--green)',
+            letterSpacing: '-0.02em',
+            margin: 0,
+          }}>Related Recipes</h2>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gap: '1.4rem',
+            marginTop: '1.2rem',
+          }} className="related-recipes-grid">
             {relatedRecipes.map((r) => (
-              <Link key={r.id} to={'/recipes/' + r.slug} className="related-card">
-                <div className="related-card-media">
-                  <img src={r.image} alt={r.title} loading="lazy" />
-                </div>
-                <div className="related-card-body">
-                  <h3>{r.title}</h3>
-                  <p>{r.description}</p>
-                </div>
-              </Link>
+              <RecipeCard key={r.id} recipe={r} variant="related" />
             ))}
           </div>
+          <style>{`
+            @media (max-width: 980px) {
+              .related-recipes-grid { grid-template-columns: repeat(2, 1fr) !important; }
+            }
+            @media (max-width: 720px) {
+              .related-recipes-grid { grid-template-columns: 1fr !important; }
+            }
+          `}</style>
         </div>
       )}
+
+      <style>{`
+        @media (max-width: 980px) {
+          .recipe-detail-layout { grid-template-columns: 1fr !important; }
+        }
+        @media (max-width: 720px) {
+          .recipe-detail-layout { padding-left: 1.2rem !important; padding-right: 1.2rem !important; }
+        }
+      `}</style>
     </div>
   );
 }

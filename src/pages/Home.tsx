@@ -3,6 +3,7 @@ import { products, features, futureChapters, recipes, biharKitchenProducts } fro
 import { formatCurrency } from '../utils/currency';
 import { useCart } from '../context/CartContext';
 import FAQAccordion from '../components/FAQAccordion';
+import RecipeCard from '../components/RecipeCard';
 import { toast } from 'sonner';
 
 /* ── Data ── */
@@ -434,17 +435,22 @@ export default function Home() {
         <section id="recipes" className="section">
           <div className="section-inner">
             <div className="section-header"><h2>Recipes</h2><p>Simple, beautiful ways to bring regional nourishment into everyday rituals.</p></div>
-            <div className="recipes-grid">
+            <div className="recipes-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: '1.4rem' }}>
               {recipes.map((recipe) => (
-                <Link key={recipe.title} to={'/recipes/' + recipe.slug} className="recipe-card">
-                  <div className="recipe-media"><img src={recipe.image} alt={recipe.title} /></div>
-                  <div className="recipe-body"><h3>{recipe.title}</h3><p>{recipe.description}</p><span className="product-link">Explore Recipe &rarr;</span></div>
-                </Link>
+                <RecipeCard key={recipe.slug} recipe={recipe} variant="home" />
               ))}
             </div>
             <div className="hero-actions" style={{ justifyContent: 'center', marginTop: '1.4rem' }}><Link className="btn btn-cream" to="/recipes">Explore Recipes</Link></div>
           </div>
         </section>
+        <style>{`
+          @media (max-width: 980px) {
+            #recipes .recipes-grid { grid-template-columns: repeat(2, 1fr) !important; }
+          }
+          @media (max-width: 720px) {
+            #recipes .recipes-grid { grid-template-columns: 1fr !important; }
+          }
+        `}</style>
 
         {/* ── FEATURED PRODUCT ── */}
         {sattu && (

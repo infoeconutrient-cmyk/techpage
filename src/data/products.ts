@@ -222,18 +222,21 @@ export const futureChapters = [
 
 export const recipes = [
   {
-    title: 'Traditional Sattu Sharbat',
-    description: 'Cool, fragrant, and deeply satisfying.',
+    title: 'Traditional Sweet Sattu Drink',
+    slug: 'traditional-sweet-sattu-drink',
+    description: 'A refreshing and energising sweet sattu drink made with roasted gram flour, jaggery, and a hint of cardamom.',
     image: 'https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=900&q=80',
   },
   {
-    title: 'Healthy Breakfast Bowl',
-    description: 'A bright, nourishing way to begin the day.',
+    title: 'Sattu Breakfast Bowl',
+    slug: 'sattu-breakfast-bowl',
+    description: 'A vibrant, nourishing breakfast bowl featuring sattu porridge topped with fresh fruits, nuts, seeds, and honey.',
     image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80',
   },
   {
-    title: 'Sattu Paratha',
-    description: 'Warm, comforting, and made for shared meals.',
+    title: 'Sattu Stuffed Paratha',
+    slug: 'sattu-stuffed-paratha',
+    description: 'A warm, flaky whole wheat paratha stuffed with a spiced sattu filling. A hearty taste of Bihar.',
     image: 'https://images.unsplash.com/photo-1526318896980-cf78c088247c?auto=format&fit=crop&w=900&q=80',
   },
 ];
