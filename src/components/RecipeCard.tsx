@@ -1,4 +1,3 @@
-import { Link } from 'react-router';
 import RecipeMeta from './RecipeMeta';
 import RecipeButton from './RecipeButton';
 
@@ -94,13 +93,11 @@ export default function RecipeCard({ recipe, variant = 'home' }: RecipeCardProps
   const isRelated = variant === 'related';
 
   return (
-    <Link
-      to={'/recipes/' + recipe.slug}
+    <div
       style={cardStyles[variant]}
       className="recipe-card-component"
     >
-      {/* Image */}
-      <div style={imageStyles[variant]}>
+      <div style={imageStyles[variant]} className="recipe-card-img-wrap">
         <img
           src={recipe.image}
           alt={recipe.title}
@@ -114,8 +111,6 @@ export default function RecipeCard({ recipe, variant = 'home' }: RecipeCardProps
           className="recipe-card-img"
         />
       </div>
-
-      {/* Body */}
       <div style={bodyStyles[variant]}>
         {!isRelated && recipe.difficulty && (
           <RecipeMeta
@@ -125,7 +120,6 @@ export default function RecipeCard({ recipe, variant = 'home' }: RecipeCardProps
             servings={recipe.servings}
           />
         )}
-
         <h3
           style={{
             fontFamily: 'var(--serif)',
@@ -139,7 +133,6 @@ export default function RecipeCard({ recipe, variant = 'home' }: RecipeCardProps
         >
           {recipe.title}
         </h3>
-
         <p
           style={{
             color: 'var(--text-soft)',
@@ -155,26 +148,14 @@ export default function RecipeCard({ recipe, variant = 'home' }: RecipeCardProps
         >
           {recipe.description}
         </p>
-
         {!isRelated && (
           <div style={{ marginTop: 'auto', paddingTop: '0.8rem' }}>
             <RecipeButton to={'/recipes/' + recipe.slug}>
-              {isHome ? 'Explore Recipe →' : 'View Recipe'}
+              See Full Recipe
             </RecipeButton>
           </div>
         )}
       </div>
-
-      <style>{`
-        .recipe-card-component:hover {
-          transform: translateY(-4px) !important;
-          box-shadow: 0 12px 36px rgba(27,27,27,0.1) !important;
-        }
-        .recipe-card-component:hover .recipe-card-img {
-          transform: scale(1.06) !important;
-        }
-      `}</style>
-    </Link>
+    </div>
   );
 }
-
