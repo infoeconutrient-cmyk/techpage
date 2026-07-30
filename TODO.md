@@ -18,3 +18,10 @@
 ## Step ✅ — Fix BUG #10: Code cleanup with reusable components
 ## Step ✅ — Build verification
 
+---
+
+# Homepage Updates
+
+## Step ✅ — Hero: Remove "Explore Bihar" CTA (keep only "Our Story" and "Shop Now")
+## Step ✅ — Contact: Left-aligned heading + description + contact form (name, email, phone, message fields) + founder story side-by-side
+
