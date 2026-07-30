@@ -4,7 +4,7 @@ import React from 'react';
 interface RecipeButtonProps {
   to: string;
   children: React.ReactNode;
-  variant?: 'primary' | 'cream' | 'back';
+  variant?: 'primary' | 'dark' | 'cream' | 'back';
   onClick?: () => void;
 }
 
@@ -34,6 +34,13 @@ const variants: Record<string, React.CSSProperties> = {
     border: '1px solid var(--green)',
     boxShadow: '0 4px 12px rgba(22,59,46,0.15)',
   },
+  dark: {
+    ...baseStyle,
+    background: '#0f2d22',
+    color: 'white',
+    border: '1px solid #0f2d22',
+    boxShadow: '0 4px 12px rgba(15,45,34,0.2)',
+  },
   cream: {
     ...baseStyle,
     background: 'var(--cream)',
@@ -54,7 +61,7 @@ const variants: Record<string, React.CSSProperties> = {
 
 const hoverStyle: React.CSSProperties = {
   transform: 'translateY(-2px)',
-  boxShadow: '0 8px 24px rgba(22,59,46,0.18)',
+  boxShadow: '0 8px 24px rgba(15,45,34,0.25)',
 };
 
 export default function RecipeButton({ to, children, variant = 'primary', onClick }: RecipeButtonProps) {
