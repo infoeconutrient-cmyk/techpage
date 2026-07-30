@@ -185,7 +185,6 @@ export default function Home() {
               <h1>Discover India&apos;s <span className="highlight">Regional Superfoods</span></h1>
               <p>We&apos;re on a mission to bring authentic regional foods from every Indian state. We begin our journey with Bihar.</p>
               <div className="hero-actions">
-                <a className="btn btn-primary" href="#chapter-one">Explore Bihar</a>
                 <a className="btn btn-secondary" href="#mission">Our Story</a>
                 <Link className="btn btn-primary" to="/shop" style={{ background: 'var(--gold)', color: 'var(--charcoal, #1b1b1b)' }}>Shop Now</Link>
               </div>
@@ -540,17 +539,71 @@ export default function Home() {
         {/* ── CONTACT ── */}
         <section id="contact" className="section">
           <div className="section-inner">
-            <div className="section-header" style={{ textAlign: 'left', marginBottom: '1.6rem' }}><h2>Contact</h2><p>For collaborations, wholesale inquiries, or press&mdash;reach out to us.</p></div>
-            <div className="founder-card">
-              <div className="founder-portrait"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=900&q=80" alt="Founder portrait" /></div>
-              <div className="founder-copy">
-                <div className="eyebrow">Founder Story</div>
-                <h2>Why We Started EcoNutrients</h2>
-                <p>India&apos;s regional foods deserve national recognition. We started EcoNutrients to preserve, celebrate, and share the stories behind the ingredients that have shaped generations of living and eating.</p>
-                <a className="btn btn-cream" href="#home">Read Our Story</a>
+            <div className="section-header" style={{ textAlign: 'left', marginBottom: '1.6rem' }}>
+              <h2>Contact</h2>
+              <p>For collaborations, wholesale inquiries, or press&mdash;reach out to us. We&apos;d love to hear from you.</p>
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.8rem', alignItems: 'start' }} className="contact-grid">
+              {/* Contact Form */}
+              <div style={{ background: 'white', border: '1px solid var(--border)', borderRadius: '1.4rem', padding: '2rem 2.2rem', boxShadow: 'var(--shadow-sm)' }}>
+                <h3 style={{ fontFamily: 'var(--serif)', fontSize: '1.3rem', color: 'var(--green)', marginBottom: '0.6rem' }}>Send Us a Message</h3>
+                <p style={{ fontSize: '0.95rem', color: 'var(--text-soft)', lineHeight: 1.7, margin: '0 0 1.4rem' }}>
+                  Fill in your details and we&apos;ll get back to you as soon as possible.
+                </p>
+                <form onSubmit={(e) => { e.preventDefault(); toast.success('Message sent! We\'ll get back to you soon.'); }} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                  <div>
+                    <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: 'var(--green)', marginBottom: '0.35rem' }} htmlFor="contact-name">Full Name</label>
+                    <input id="contact-name" type="text" placeholder="Your full name" required
+                      style={{ width: '100%', padding: '0.75rem 1rem', border: '1px solid var(--border)', borderRadius: '0.8rem', fontSize: '0.95rem', background: 'var(--cream)', color: 'var(--text)', outline: 'none', fontFamily: 'var(--sans)' }}
+                      onFocus={(e) => { e.currentTarget.style.borderColor = 'var(--green)'; }}
+                      onBlur={(e) => { e.currentTarget.style.borderColor = 'var(--border)'; }}
+                    />
+                  </div>
+                  <div>
+                    <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: 'var(--green)', marginBottom: '0.35rem' }} htmlFor="contact-email">Email</label>
+                    <input id="contact-email" type="email" placeholder="your@email.com" required
+                      style={{ width: '100%', padding: '0.75rem 1rem', border: '1px solid var(--border)', borderRadius: '0.8rem', fontSize: '0.95rem', background: 'var(--cream)', color: 'var(--text)', outline: 'none', fontFamily: 'var(--sans)' }}
+                      onFocus={(e) => { e.currentTarget.style.borderColor = 'var(--green)'; }}
+                      onBlur={(e) => { e.currentTarget.style.borderColor = 'var(--border)'; }}
+                    />
+                  </div>
+                  <div>
+                    <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: 'var(--green)', marginBottom: '0.35rem' }} htmlFor="contact-phone">Phone Number</label>
+                    <input id="contact-phone" type="tel" placeholder="+91 98765 43210"
+                      style={{ width: '100%', padding: '0.75rem 1rem', border: '1px solid var(--border)', borderRadius: '0.8rem', fontSize: '0.95rem', background: 'var(--cream)', color: 'var(--text)', outline: 'none', fontFamily: 'var(--sans)' }}
+                      onFocus={(e) => { e.currentTarget.style.borderColor = 'var(--green)'; }}
+                      onBlur={(e) => { e.currentTarget.style.borderColor = 'var(--border)'; }}
+                    />
+                  </div>
+                  <div>
+                    <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: 'var(--green)', marginBottom: '0.35rem' }} htmlFor="contact-message">Message</label>
+                    <textarea id="contact-message" rows={4} placeholder="Write your message here..." required
+                      style={{ width: '100%', padding: '0.75rem 1rem', border: '1px solid var(--border)', borderRadius: '0.8rem', fontSize: '0.95rem', background: 'var(--cream)', color: 'var(--text)', outline: 'none', resize: 'vertical', fontFamily: 'var(--sans)' }}
+                      onFocus={(e) => { e.currentTarget.style.borderColor = 'var(--green)'; }}
+                      onBlur={(e) => { e.currentTarget.style.borderColor = 'var(--border)'; }}
+                    />
+                  </div>
+                  <button type="submit" className="btn btn-primary" style={{ alignSelf: 'flex-start', padding: '0.8rem 2rem' }}>Send Message</button>
+                </form>
+              </div>
+
+              {/* Founder Story */}
+              <div className="founder-card" style={{ margin: 0 }}>
+                <div className="founder-portrait"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=900&q=80" alt="Founder portrait" /></div>
+                <div className="founder-copy">
+                  <div className="eyebrow">Founder Story</div>
+                  <h2>Why We Started EcoNutrients</h2>
+                  <p>India&apos;s regional foods deserve national recognition. We started EcoNutrients to preserve, celebrate, and share the stories behind the ingredients that have shaped generations of living and eating.</p>
+                  <a className="btn btn-cream" href="#home">Read Our Story</a>
+                </div>
               </div>
             </div>
           </div>
+          <style>{`
+            @media (max-width: 980px) {
+              .contact-grid { grid-template-columns: 1fr !important; }
+            }
+          `}</style>
         </section>
       </main>
     </div>
