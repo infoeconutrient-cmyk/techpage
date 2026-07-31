@@ -111,9 +111,9 @@ h3 { font-family: var(--serif); font-weight: 600; letter-spacing: -0.01em; }
 .product-body p { color: var(--text-soft); line-height: 1.7; margin: 0 0 1.2rem; }
 .product-link { font-weight: 600; color: var(--green); font-size: 0.95rem; }
 .product-link:hover { color: var(--gold); }
-.story-grid { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: 1.8rem; align-items: start; }
-.story-media { border-radius: 1.4rem; overflow: hidden; min-height: 500px; box-shadow: var(--shadow-md); }
-.story-media img { transition: transform 600ms ease; }
+.story-grid { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: 1.8rem; align-items: stretch; }
+.story-media { border-radius: 1.4rem; overflow: hidden; min-height: 500px; box-shadow: var(--shadow-md); position: relative; }
+.story-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center center; transition: transform 600ms ease; }
 .story-media:hover img { transform: scale(1.05); }
 .story-content { background: white; border: 1px solid rgba(27,27,27,0.06); border-radius: 1.4rem; padding: 2.4rem; box-shadow: var(--shadow-sm); }
 .story-content h2 { color: var(--green); margin-bottom: 1rem; }
