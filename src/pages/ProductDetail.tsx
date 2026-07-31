@@ -62,7 +62,7 @@ export default function ProductDetail() {
               <img
                 src={product.images[selectedImage]}
                 alt={product.name}
-                style={{ width: '100%', height: '100%', minHeight: 400, objectFit: 'cover', transition: 'transform 600ms ease' }}
+                style={{ width: '100%', height: '100%', minHeight: 400, objectFit: 'contain', transition: 'transform 600ms ease' }}
               />
             </div>
             {product.images.length > 1 && (
@@ -84,7 +84,7 @@ export default function ProductDetail() {
                       transition: 'border-color 200ms ease',
                     }}
                   >
-                    <img src={img} alt={''} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    <img src={img} alt={''} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
                   </button>
                 ))}
               </div>

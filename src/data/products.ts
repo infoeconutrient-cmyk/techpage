@@ -39,10 +39,12 @@ export const products: Product[] = [
     shortDescription:
       'A time-honoured Bihar staple made from roasted gram, crafted for daily nourishment.',
     images: [
-      'https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1526318896980-cf78c088247c?auto=format&fit=crop&w=900&q=80',
+      '/Sattu1.png',
+      '/Sattu2.png',
+      '/Sattu3.png',
+      '/Sattu4.png',
+      '/Sattu5.png',
+      '/Sattu6.png',
     ],
     category: 'Grains & Flours',
     badge: 'Available',
@@ -156,7 +158,7 @@ export const biharKitchenProducts: BiharKitchenProduct[] = [
   {
     name: 'Traditional Sattu',
     status: 'Available',
-    image: 'https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=80',
+    image: '/Sattu1.png',
     description: 'A time-honoured Bihar staple made from roasted gram, crafted for daily nourishment.',
     shortDescription: 'A time-honoured Bihar staple made from roasted gram.',
     price: 349,
