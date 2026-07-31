@@ -223,7 +223,7 @@ export default function Home() {
                 <p>Bihar has long been a cradle of nourishing traditions, from hand-ground grains to seasonal ingredients that carry the memory of generations. The journey begins here because its foods are deeply rooted in resilience, simplicity, and strength.</p>
                 <a className="text-link" href="#products">Explore Bihar Collection &rarr;</a>
               </div>
-              <div className="chapter-image"><img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=1200&q=80" alt="Golden landscape and food culture from Bihar" /></div>
+              <div className="chapter-image"><img src="/Chapter1Bihar.png" alt="Golden landscape and food culture from Bihar" /></div>
             </div>
           </div>
         </section>
@@ -392,7 +392,7 @@ export default function Home() {
         <section id="story" className="section">
           <div className="section-inner">
             <div className="story-grid">
-              <div className="story-media"><img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=1200&q=80" alt="Warm bowl of sattu preparation" /></div>
+              <div className="story-media"><img src="/WhyBiharLovesSattu.png" alt="Warm bowl of sattu preparation" /></div>
               <div className="story-content">
                 <div className="eyebrow">Why Sattu?</div>
                 <h2>Why Bihar Loves Sattu</h2>
