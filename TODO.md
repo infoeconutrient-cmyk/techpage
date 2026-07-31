@@ -25,3 +25,13 @@
 ## Step ✅ — Hero: Remove "Explore Bihar" CTA (keep only "Our Story" and "Shop Now")
 ## Step ✅ — Contact: Left-aligned heading + description + contact form (name, email, phone, message fields) + founder story side-by-side
 
+---
+
+# Mission Section Map
+
+## Step ✅ — Replace inline SVG map with country.png image
+- Moved `country.png` into `public/` directory (Vite serves root-absolute paths from there)
+- Replaced inline SVG in Mission section with `<img src="/country.png">`
+- Kept legend items (Bihar — Available / Other States — Coming Soon) in the left column
+- Updated CSS rule `.map-art svg` → `.map-art img`
+

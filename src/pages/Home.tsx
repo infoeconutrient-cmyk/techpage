@@ -89,7 +89,7 @@ h3 { font-family: var(--serif); font-weight: 600; letter-spacing: -0.01em; }
 .dot.green { background: var(--green); box-shadow: 0 0 0 3px rgba(22,59,46,0.12); }
 .dot.muted { background: #c5c0b5; box-shadow: 0 0 0 3px rgba(197,192,181,0.2); }
 .map-art { background: linear-gradient(135deg, rgba(22,59,46,0.06), rgba(212,168,79,0.08)); border-radius: 1.2rem; padding: 1.2rem; }
-.map-art svg { width: 100%; height: auto; }
+.map-art img { width: 100%; height: auto; border-radius: 0.8rem; }
 .chapter-card { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 0; overflow: hidden; padding: 0; }
 .chapter-copy { padding: 3rem 2.8rem; display: flex; flex-direction: column; justify-content: center; background: white; }
 .chapter-copy h3 { font-family: var(--serif); font-size: 1.2rem; color: var(--gold); margin-bottom: 0.4rem; font-style: italic; }
@@ -205,15 +205,8 @@ export default function Home() {
                   <div className="legend-item"><span className="dot green" /><strong>Bihar &mdash; Available</strong></div>
                   <div className="legend-item"><span className="dot muted" /><span>Other States &mdash; Coming Soon</span></div>
                 </div>
-                <div className="map-art" aria-label="Stylised India map highlighting Bihar">
-                  <svg viewBox="0 0 420 360" role="img" aria-label="Map of India with Bihar highlighted">
-                    <rect x="0" y="0" width="420" height="360" rx="24" fill="rgba(255,255,255,0.55)" />
-                    <path d="M81 122c10-18 27-29 49-31l29 6 21 25 8 36 17 24 10 29-14 28-29-3-27-16-20-7-19 1-15-12-14-24 4-19 4-23 8-15z" fill="#2f4d3c" opacity="0.96" />
-                    <path d="M122 98c16-18 41-24 62-17l19 6 19 26 14 17-13 19-22 13-31 4-24-6-18-18 4-20 2-12z" fill="#cdb79d" opacity="0.6" />
-                    <path d="M121 149l39 5 16 12 5 22-13 17-30 10-20-7-14-15 5-18 12-16z" fill="#cdb79d" opacity="0.6" />
-                    <path d="M183 158l27 5 24 17-4 21-27 12-18-8-11-20 2-15 7-12z" fill="#cdb79d" opacity="0.6" />
-                    <path d="M233 191l34 4 25 17 9 26-17 17-27 8-25-13-6-20 3-17 4-22z" fill="#cdb79d" opacity="0.6" />
-                  </svg>
+                <div className="map-art">
+                  <img src="/country.png" alt="Map of India highlighting Bihar" style={{ width: '100%', height: 'auto', objectFit: 'contain' }} />
                 </div>
               </div>
             </div>
