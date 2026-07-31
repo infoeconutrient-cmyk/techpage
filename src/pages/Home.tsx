@@ -206,7 +206,7 @@ export default function Home() {
                   <div className="legend-item"><span className="dot muted" /><span>Other States &mdash; Coming Soon</span></div>
                 </div>
                 <div className="map-art">
-                  <img src="/country.png" alt="Map of India highlighting Bihar" style={{ width: '100%', height: 'auto', objectFit: 'contain' }} />
+                  <img src="/BiharHighlighted.png" alt="Map of India highlighting Bihar" style={{ width: '100%', height: 'auto', objectFit: 'contain' }} />
                 </div>
               </div>
             </div>
