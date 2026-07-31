@@ -39,11 +39,11 @@ export const products: Product[] = [
     shortDescription:
       'A time-honoured Bihar staple made from roasted gram, crafted for daily nourishment.',
     images: [
+      '/Sattu5.png',
       '/Sattu1.png',
       '/Sattu2.png',
       '/Sattu3.png',
       '/Sattu4.png',
-      '/Sattu5.png',
       '/Sattu6.png',
     ],
     category: 'Grains & Flours',
