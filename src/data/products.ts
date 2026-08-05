@@ -156,9 +156,9 @@ export interface BiharKitchenProduct {
 
 export const biharKitchenProducts: BiharKitchenProduct[] = [
   {
-    name: 'Traditional Sattu',
+name: 'Traditional Sattu',
     status: 'Available',
-    image: '/Sattu1.png',
+    image: '/Sattu5.png',
     description: 'A time-honoured Bihar staple made from roasted gram, crafted for daily nourishment.',
     shortDescription: 'A time-honoured Bihar staple made from roasted gram.',
     price: 349,
@@ -174,9 +174,9 @@ export const biharKitchenProducts: BiharKitchenProduct[] = [
     slug: 'traditional-sattu',
   },
   {
-    name: 'Premium Makhana',
+name: 'Premium Makhana',
     status: 'Coming Soon',
-    image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=900&q=80',
+    image: '/Makhana.png',
     description: 'Naturally light, crunchy, and packed with nutrition. Carefully sourced from Bihar and prepared for modern healthy lifestyles. Coming soon to EcoNutrients.',
     shortDescription: 'Naturally light, crunchy, and packed with nutrition.',
     price: null,
