@@ -1,37 +1,30 @@
-# Recipes Bug Fix Progress
+# TODO — Consistent Section Spacing on Home Page
 
-## Step ✅ — Fix BUG #1: Add slugs to Homepage recipes
-## Step ✅ — Create reusable components
-- [x] RecipeCard.tsx
-- [x] RecipeButton.tsx
-- [x] RecipeMeta.tsx
-- [x] RecipeHero.tsx
-- [x] RecipeSection.tsx
-## Step ✅ — Fix BUG #2: Homepage recipe card alignment
-## Step ✅ — Fix BUG #3: Recipes listing page typography/spacing
-## Step ✅ — Fix BUG #4: Consistent View Recipe buttons
-## Step ✅ — Fix BUG #5: Premium back button
-## Step ✅ — Fix BUG #6: Recipe detail spacing
-## Step ✅ — Fix BUG #7: Typography improvements
-## Step ✅ — Fix BUG #8: Card hover effects
-## Step ✅ — Fix BUG #9: Responsive verification
-## Step ✅ — Fix BUG #10: Code cleanup with reusable components
-## Step ✅ — Build verification
+## Goal
+Make every main section on the Home page visually distinct using the existing `--cream-strong` background shade, matching the style of the Featured Product and Customer Reviews sections.
 
----
+## Plan
+Apply `style={{ background: 'var(--cream-strong)' }}` to alternating sections:
 
-# Homepage Updates
+1. Mission — cream (no change)
+2. Chapter One — cream-strong
+3. Products — cream (no change)
+4. Story (Why Sattu) — cream-strong
+5. Journey — cream (no change)
+6. Recipes — cream-strong
+7. Featured Product — cream (remove darker bg)
+8. Why Choose — cream-strong
+9. Customer Reviews — cream (remove darker bg)
+10. FAQ — cream-strong
+11. Contact — cream (no change)
 
-## Step ✅ — Hero: Remove "Explore Bihar" CTA (keep only "Our Story" and "Shop Now")
-## Step ✅ — Contact: Left-aligned heading + description + contact form (name, email, phone, message fields) + founder story side-by-side
-
----
-
-# Mission Section Map
-
-## Step ✅ — Replace inline SVG map with country.png image
-- Moved `country.png` into `public/` directory (Vite serves root-absolute paths from there)
-- Replaced inline SVG in Mission section with `<img src="/country.png">`
-- Kept legend items (Bihar — Available / Other States — Coming Soon) in the left column
-- Updated CSS rule `.map-art svg` → `.map-art img`
-
+## Steps
+- [x] Create TODO.md
+- [x] Edit Home.tsx: add cream-strong to Chapter One section
+- [x] Edit Home.tsx: add cream-strong to Story section
+- [x] Edit Home.tsx: add cream-strong to Recipes section
+- [x] Edit Home.tsx: remove darker bg from Featured Product
+- [x] Edit Home.tsx: add cream-strong to Why Choose section
+- [x] Edit Home.tsx: remove darker bg from Customer Reviews
+- [x] Edit Home.tsx: add cream-strong to FAQ section
+- [x] Verify page renders correctly
