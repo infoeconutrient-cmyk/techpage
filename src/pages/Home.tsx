@@ -213,8 +213,8 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ── CHAPTER ONE ── */}
-        <section id="chapter-one" className="section">
+{/* ── CHAPTER ONE ── */}
+        <section id="chapter-one" className="section" style={{ background: 'var(--cream-strong)' }}>
           <div className="section-inner">
             <div className="chapter-card">
               <div className="chapter-copy">
@@ -394,8 +394,8 @@ export default function Home() {
           `}</style>
         </section>
 
-        {/* ── STORY ── */}
-        <section id="story" className="section">
+{/* ── STORY ── */}
+        <section id="story" className="section" style={{ background: 'var(--cream-strong)' }}>
           <div className="section-inner">
             <div className="story-grid">
               <div className="story-media"><img src="/WhyBiharLovesSattu.png" alt="Warm bowl of sattu preparation" /></div>
@@ -429,8 +429,8 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ── RECIPES ── */}
-        <section id="recipes" className="section">
+{/* ── RECIPES ── */}
+        <section id="recipes" className="section" style={{ background: 'var(--cream-strong)' }}>
           <div className="section-inner">
             <div className="section-header"><h2>Recipes</h2><p>Simple, beautiful ways to bring regional nourishment into everyday rituals.</p></div>
             <div className="recipes-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: '1.4rem' }}>
@@ -451,8 +451,8 @@ export default function Home() {
         `}</style>
 
         {/* ── FEATURED PRODUCT ── */}
-        {sattu && (
-          <section className="section" style={{ background: 'var(--cream-strong)' }}>
+{sattu && (
+          <section className="section">
             <div className="section-inner">
               <div className="section-header">
                 <h2>Featured Product</h2>
@@ -492,8 +492,8 @@ export default function Home() {
           </section>
         )}
 
-        {/* ── WHY CHOOSE ECONUTRIENTS ── */}
-        <section className="section">
+{/* ── WHY CHOOSE ECONUTRIENTS ── */}
+        <section className="section" style={{ background: 'var(--cream-strong)' }}>
           <div className="section-inner">
             <div className="section-header">
               <h2>Why Choose EcoNutrients</h2>
@@ -514,8 +514,8 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ── CUSTOMER REVIEWS ── */}
-        <section className="section" style={{ background: 'var(--cream-strong)' }}>
+{/* ── CUSTOMER REVIEWS ── */}
+        <section className="section">
           <div className="section-inner">
             <div className="section-header"><h2>Customer Reviews</h2><p>Hear from our community about their experience with EcoNutrients.</p></div>
             <div style={{ textAlign: 'center', padding: '3rem 1rem', background: 'white', borderRadius: '1.4rem', border: '1px solid var(--border)', boxShadow: 'var(--shadow-sm)' }}>
@@ -525,8 +525,8 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ── FAQ PREVIEW ── */}
-        <section className="section">
+{/* ── FAQ PREVIEW ── */}
+        <section className="section" style={{ background: 'var(--cream-strong)' }}>
           <div className="section-inner">
             <div className="section-header"><h2>Frequently Asked Questions</h2><p>Everything you need to know about our products and process.</p></div>
             <div style={{ maxWidth: 700, margin: '0 auto', background: 'white', border: '1px solid var(--border)', borderRadius: '1.4rem', padding: '1.5rem 1.8rem', boxShadow: 'var(--shadow-sm)' }}>
