@@ -538,7 +538,7 @@ export default function Home() {
         {/* ── CONTACT ── */}
         <section id="contact" className="section">
           <div className="section-inner">
-            <div className="section-header" style={{ textAlign: 'left', marginBottom: '1.6rem' }}>
+<div className="section-header" style={{ textAlign: 'center', marginBottom: '3rem' }}>
               <h2>Contact</h2>
               <p>For collaborations, wholesale inquiries, or press&mdash;reach out to us. We&apos;d love to hear from you.</p>
             </div>
@@ -568,7 +568,7 @@ export default function Home() {
                   </div>
                   <div>
                     <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: 'var(--green)', marginBottom: '0.35rem' }} htmlFor="contact-phone">Phone Number</label>
-                    <input id="contact-phone" type="tel" placeholder="+91 98765 43210"
+                    <input id="contact-phone" type="tel" placeholder="+91 98353 11210"
                       style={{ width: '100%', padding: '0.75rem 1rem', border: '1px solid var(--border)', borderRadius: '0.8rem', fontSize: '0.95rem', background: 'var(--cream)', color: 'var(--text)', outline: 'none', fontFamily: 'var(--sans)' }}
                       onFocus={(e) => { e.currentTarget.style.borderColor = 'var(--green)'; }}
                       onBlur={(e) => { e.currentTarget.style.borderColor = 'var(--border)'; }}
