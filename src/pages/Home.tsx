@@ -9,12 +9,12 @@ import { toast } from 'sonner';
 /* ── Data ── */
 
 const whyChoose = [
-  { title: '100% Natural', subtitle: 'No additives, no preservatives — just pure ingredients.' },
-  { title: 'No Preservatives', subtitle: 'Made the traditional way, meant to be consumed fresh.' },
-  { title: 'Traditional Recipe', subtitle: 'Generations-old methods passed down through families.' },
-  { title: 'Made in India', subtitle: 'Sourced and produced locally, supporting Indian farmers.' },
-  { title: 'Rich in Protein', subtitle: 'Packed with plant-based protein for daily nourishment.' },
-  { title: 'Fresh Ingredients', subtitle: 'Carefully selected ingredients from the finest sources.' },
+  { icon: '🌿', title: '100% Natural', subtitle: 'No additives, no preservatives — just pure ingredients.' },
+  { icon: '🧺', title: 'No Preservatives', subtitle: 'Made the traditional way, meant to be consumed fresh.' },
+  { icon: '📜', title: 'Traditional Recipe', subtitle: 'Generations-old methods passed down through families.' },
+  { icon: '🇮🇳', title: 'Made in India', subtitle: 'Sourced and produced locally, supporting Indian farmers.' },
+  { icon: '💪', title: 'Rich in Protein', subtitle: 'Packed with plant-based protein for daily nourishment.' },
+  { icon: '🥬', title: 'Fresh Ingredients', subtitle: 'Carefully selected ingredients from the finest sources.' },
 ];
 
 const faqItems = [
@@ -504,7 +504,7 @@ export default function Home() {
                 <div key={item.title} style={{ background: 'white', border: '1px solid var(--border)', borderRadius: '1.4rem', padding: '1.6rem 1.4rem', boxShadow: 'var(--shadow-sm)', transition: 'all 350ms ease', textAlign: 'center' }}
                   onMouseEnter={(e) => { e.currentTarget.style.boxShadow = 'var(--shadow-md)'; e.currentTarget.style.transform = 'translateY(-3px)'; }}
                   onMouseLeave={(e) => { e.currentTarget.style.boxShadow = 'var(--shadow-sm)'; e.currentTarget.style.transform = 'translateY(0)'; }}>
-                  <span style={{ fontSize: '2.2rem', display: 'block', marginBottom: '0.6rem' }}>🌿</span>
+<span style={{ fontSize: '2.2rem', display: 'block', marginBottom: '0.6rem' }}>{item.icon}</span>
                   <h3 style={{ fontSize: '1.05rem', color: 'var(--green)', marginBottom: '0.4rem' }}>{item.title}</h3>
                   <p style={{ fontSize: 14, color: 'var(--text-soft)', lineHeight: 1.6, margin: 0 }}>{item.subtitle}</p>
                 </div>
