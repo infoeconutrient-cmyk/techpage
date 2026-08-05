@@ -588,7 +588,7 @@ export default function Home() {
 
               {/* Founder Story */}
               <div className="founder-card" style={{ margin: 0 }}>
-                <div className="founder-portrait"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=900&q=80" alt="Founder portrait" /></div>
+<div className="founder-portrait"><img src="/Founder.jpeg" alt="Founder portrait" /></div>
                 <div className="founder-copy">
                   <div className="eyebrow">Founder Story</div>
                   <h2>Why We Started EcoNutrients</h2>
