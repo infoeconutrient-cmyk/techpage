@@ -234,8 +234,8 @@ export default function Home() {
             <div className="section-header"><h2>From Bihar&apos;s Kitchen</h2><p>Curated staples that carry the soul of the state into contemporary homes.</p></div>
             <div className="bihar-kitchen-grid">
               {biharKitchenProducts.map((product) => (
-                <article key={product.name} className="bihar-kitchen-card">
-                  <div className="bihar-kitchen-media">
+<article key={product.name} className="bihar-kitchen-card">
+                  <div className={'bihar-kitchen-media' + (product.name === 'Premium Makhana' ? ' bihar-kitchen-media--fill' : '')}>
                     <img src={product.image} alt={product.name} loading="lazy" />
                   </div>
                   <div className="bihar-kitchen-body">
@@ -321,15 +321,21 @@ export default function Home() {
               box-shadow: var(--shadow-md);
               transform: translateY(-3px);
             }
-            .bihar-kitchen-media {
+.bihar-kitchen-media {
               height: 280px;
               overflow: hidden;
+              background: #ffffff;
             }
-            .bihar-kitchen-media img {
+.bihar-kitchen-media img {
               width: 100%;
               height: 100%;
-              object-fit: cover;
+              object-fit: contain;
+              object-position: center;
               transition: transform 600ms ease;
+            }
+            .bihar-kitchen-media--fill img {
+              object-fit: cover;
+              object-position: center;
             }
             .bihar-kitchen-card:hover .bihar-kitchen-media img {
               transform: scale(1.08);
