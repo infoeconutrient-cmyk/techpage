@@ -1,30 +1,28 @@
-# TODO — Consistent Section Spacing on Home Page
+# TODO — Add Policy Pages & Wire Footer Links
 
 ## Goal
-Make every main section on the Home page visually distinct using the existing `--cream-strong` background shade, matching the style of the Featured Product and Customer Reviews sections.
+Create dedicated policy pages and make the Footer policy links navigate to them.
 
 ## Plan
-Apply `style={{ background: 'var(--cream-strong)' }}` to alternating sections:
-
-1. Mission — cream (no change)
-2. Chapter One — cream-strong
-3. Products — cream (no change)
-4. Story (Why Sattu) — cream-strong
-5. Journey — cream (no change)
-6. Recipes — cream-strong
-7. Featured Product — cream (remove darker bg)
-8. Why Choose — cream-strong
-9. Customer Reviews — cream (remove darker bg)
-10. FAQ — cream-strong
-11. Contact — cream (no change)
+1. Create 5 policy pages following existing breadcrumb + card design:
+   - Shipping Policy → `/shipping-policy`
+   - Refund Policy → `/refund-policy`
+   - Privacy Policy → `/privacy-policy`
+   - Terms & Conditions → `/terms-conditions`
+   - FAQs → `/faqs` (using existing `FAQAccordion`)
+2. Register the new routes in `src/App.tsx`
+3. Update Footer policy links from `<a href="#">` to `<Link>` routes
+4. Verify build
 
 ## Steps
 - [x] Create TODO.md
-- [x] Edit Home.tsx: add cream-strong to Chapter One section
-- [x] Edit Home.tsx: add cream-strong to Story section
-- [x] Edit Home.tsx: add cream-strong to Recipes section
-- [x] Edit Home.tsx: remove darker bg from Featured Product
-- [x] Edit Home.tsx: add cream-strong to Why Choose section
-- [x] Edit Home.tsx: remove darker bg from Customer Reviews
-- [x] Edit Home.tsx: add cream-strong to FAQ section
-- [x] Verify page renders correctly
+- [x] Create src/components/PolicyLayout.tsx (shared layout for policy pages)
+- [x] Create src/pages/ShippingPolicy.tsx
+- [x] Create src/pages/RefundPolicy.tsx
+- [x] Create src/pages/PrivacyPolicy.tsx
+- [x] Create src/pages/TermsConditions.tsx
+- [x] Create src/pages/FAQs.tsx
+- [x] Update src/App.tsx: add 5 new routes
+- [x] Update src/components/Footer.tsx: point policy links to new pages
+- [ ] Run build to verify (blocked — Node.js not installed in environment)
+

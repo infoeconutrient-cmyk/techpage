@@ -64,11 +64,11 @@ export default function Footer() {
               Policies
             </h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-              <a href="#" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', fontFamily: 'var(--sans, Inter, sans-serif)', fontSize: 14, transition: 'color 200ms ease' }}>Shipping Policy</a>
-              <a href="#" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', fontFamily: 'var(--sans, Inter, sans-serif)', fontSize: 14, transition: 'color 200ms ease' }}>Refund Policy</a>
-              <a href="#" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', fontFamily: 'var(--sans, Inter, sans-serif)', fontSize: 14, transition: 'color 200ms ease' }}>Privacy Policy</a>
-              <a href="#" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', fontFamily: 'var(--sans, Inter, sans-serif)', fontSize: 14, transition: 'color 200ms ease' }}>Terms &amp; Conditions</a>
-              <a href="#" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', fontFamily: 'var(--sans, Inter, sans-serif)', fontSize: 14, transition: 'color 200ms ease' }}>FAQs</a>
+              <Link to="/shipping-policy" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', fontFamily: 'var(--sans, Inter, sans-serif)', fontSize: 14, transition: 'color 200ms ease' }}>Shipping Policy</Link>
+              <Link to="/refund-policy" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', fontFamily: 'var(--sans, Inter, sans-serif)', fontSize: 14, transition: 'color 200ms ease' }}>Refund Policy</Link>
+              <Link to="/privacy-policy" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', fontFamily: 'var(--sans, Inter, sans-serif)', fontSize: 14, transition: 'color 200ms ease' }}>Privacy Policy</Link>
+              <Link to="/terms-conditions" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', fontFamily: 'var(--sans, Inter, sans-serif)', fontSize: 14, transition: 'color 200ms ease' }}>Terms &amp; Conditions</Link>
+              <Link to="/faqs" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', fontFamily: 'var(--sans, Inter, sans-serif)', fontSize: 14, transition: 'color 200ms ease' }}>FAQs</Link>
             </div>
           </div>
 

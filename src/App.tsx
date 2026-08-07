@@ -11,6 +11,11 @@ import ProductDetail from './pages/ProductDetail';
 import Checkout from './pages/Checkout';
 import Recipes from './pages/Recipes';
 import RecipeDetail from './pages/RecipeDetail';
+import ShippingPolicy from './pages/ShippingPolicy';
+import RefundPolicy from './pages/RefundPolicy';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsConditions from './pages/TermsConditions';
+import FAQs from './pages/FAQs';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -42,6 +47,11 @@ function AppShell() {
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/recipes" element={<Recipes />} />
         <Route path="/recipes/:slug" element={<RecipeDetail />} />
+        <Route path="/shipping-policy" element={<ShippingPolicy />} />
+        <Route path="/refund-policy" element={<RefundPolicy />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/terms-conditions" element={<TermsConditions />} />
+        <Route path="/faqs" element={<FAQs />} />
       </Routes>
       <Footer />
       <CartDrawer open={cartOpen} onClose={() => setCartOpen(false)} />
