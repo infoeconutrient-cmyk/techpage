@@ -1,3 +1,4 @@
+import { useRef, useState } from 'react';
 import { Link } from 'react-router';
 import { products, features, futureChapters, recipes, biharKitchenProducts } from '../data/products';
 import { formatCurrency } from '../utils/currency';
@@ -5,6 +6,10 @@ import { useCart } from '../context/CartContext';
 import FAQAccordion from '../components/FAQAccordion';
 import RecipeCard from '../components/RecipeCard';
 import { toast } from 'sonner';
+
+/* Contact form API endpoint. Override at build time if the function is hosted
+   on a different origin (see .env.example: VITE_CONTACT_API_URL). */
+const CONTACT_API_URL = (import.meta.env.VITE_CONTACT_API_URL as string | undefined) || '/api/contact';
 
 /* ── Data ── */
 
@@ -153,6 +158,50 @@ h3 { font-family: var(--serif); font-weight: 600; letter-spacing: -0.01em; }
 export default function Home() {
   const { addItem } = useCart();
   const sattu = products[0];
+
+  const contactFormRef = useRef<HTMLFormElement>(null);
+  const [contactSending, setContactSending] = useState(false);
+
+  const handleContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (contactSending) return;
+
+    const form = e.currentTarget;
+    const data = Object.fromEntries(new FormData(form).entries());
+
+    setContactSending(true);
+    try {
+      const response = await fetch(CONTACT_API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: data['contact-name'],
+          email: data['contact-email'],
+          phone: data['contact-phone'],
+          message: data['contact-message'],
+        }),
+      });
+
+      if (!response.ok) {
+        let message = 'Sorry, something went wrong. Please try again later.';
+        try {
+          const body = (await response.json()) as { error?: string };
+          if (body.error) message = body.error;
+        } catch {
+          /* fall back to the generic message */
+        }
+        throw new Error(message);
+      }
+
+      form.reset();
+      toast.success('Message sent! We\'ll get back to you shortly.');
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Sorry, something went wrong. Please try again later.';
+      toast.error(message);
+    } finally {
+      setContactSending(false);
+    }
+  };
 
   const handleAddFeatured = () => {
     if (sattu) {
@@ -549,7 +598,7 @@ export default function Home() {
                 <p style={{ fontSize: '0.95rem', color: 'var(--text-soft)', lineHeight: 1.7, margin: '0 0 1.4rem' }}>
                   Fill in your details and we&apos;ll get back to you as soon as possible.
                 </p>
-                <form onSubmit={(e) => { e.preventDefault(); toast.success('Message sent! We\'ll get back to you soon.'); }} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                <form ref={contactFormRef} onSubmit={handleContactSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                   <div>
                     <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: 'var(--green)', marginBottom: '0.35rem' }} htmlFor="contact-name">Full Name</label>
                     <input id="contact-name" type="text" placeholder="Your full name" required
@@ -582,7 +631,7 @@ export default function Home() {
                       onBlur={(e) => { e.currentTarget.style.borderColor = 'var(--border)'; }}
                     />
                   </div>
-                  <button type="submit" className="btn btn-primary" style={{ alignSelf: 'flex-start', padding: '0.8rem 2rem' }}>Send Message</button>
+                  <button type="submit" className="btn btn-primary" style={{ alignSelf: 'flex-start', padding: '0.8rem 2rem' }} disabled={contactSending}>{contactSending ? 'Sending…' : 'Send Message'}</button>
                 </form>
               </div>
 
